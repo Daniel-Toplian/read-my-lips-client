@@ -1,0 +1,16 @@
+#upload-section{
+    padding-top: 80px;
+    padding-bottom: 120px;
+    text-align: center;
+    background-color: rgba(231,229,230,255);
+}
+
+#upload-button{
+    color: white;
+    background-color: aqua;
+    border-radius: 10%;
+}
+
+.continer{
+    
+}
