@@ -1,10 +1,16 @@
+import "../styles/LogoSection.css"
+
 function Logo(){
     return (
         <div>
-            <h1>Read my lips</h1>
-            <p>We turn lip movements into text</p>
+            <div className="logo">
+                <img src={process.env.PUBLIC_URL + '/ReadMyLipsLogo.png'} alt="ReadMyLips Inc. logo"/>          
+            </div>
+            <div className="sub-heading">
+                <p className="sec-title">We turn lip movements into text.</p>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Logo;

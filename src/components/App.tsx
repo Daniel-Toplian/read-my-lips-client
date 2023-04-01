@@ -1,5 +1,7 @@
 import Navbar from './Navbar';
 import Logo from './Logo'
+import UploadSection from './UploadSection';
+import FooterSection from './FooterSection';
 
 
 function App() {
@@ -7,6 +9,8 @@ function App() {
     <div>
       <Navbar />
       <Logo />
+      <UploadSection />
+      <FooterSection />
     </div>
   );
 }
