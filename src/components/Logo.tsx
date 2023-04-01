@@ -7,7 +7,7 @@ function Logo(){
                 <img src={process.env.PUBLIC_URL + '/ReadMyLipsLogo.png'} alt="ReadMyLips Inc. logo"/>          
             </div>
             <div className="sub-heading">
-                <p className="sec-title">We turn lip movements into text.</p>
+                <p id="title">We turn lip movements into text.</p>
             </div>
         </div>
     );

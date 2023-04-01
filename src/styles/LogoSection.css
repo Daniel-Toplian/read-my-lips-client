@@ -4,7 +4,12 @@
 }
 
 .sub-heading{
+    padding-left: 370px;
+}
+
+#title{
     color: black;
-    font-family: 'Times New Roman', Times, serif;
-    
+    font-family:sans-serif;
+    text-align: left;
+    font-size: 18px;
 }
