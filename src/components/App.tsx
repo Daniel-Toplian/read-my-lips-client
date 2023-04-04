@@ -1,18 +1,17 @@
-import Navbar from './Navbar';
-import Logo from './Logo'
-import UploadSection from './UploadSection';
-import FooterSection from './FooterSection';
-
+import Navbar from './Navbar'
+import LogoSection from './LogoSection'
+import UploadSection from './UploadSection'
+import FooterSection from './FooterSection'
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Logo />
+      <LogoSection />
       <UploadSection />
       <FooterSection />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

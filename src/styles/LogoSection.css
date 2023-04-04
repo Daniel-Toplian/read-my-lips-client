@@ -1,19 +1,6 @@
-.logo{
-    padding-top: 120px;
-    text-align: center;
-}
-
-.sub-heading{
-    padding-left: 370px;
-}
-
-#title{
-    color: black;
-    font-family:sans-serif;
-    text-align: left;
-    font-size: 18px;
-}
-
-.logoSection{
-    background-color:white;
+.logoSection {
+  background-color: rgba(242, 243, 243, 255);
+  padding-top: 5%;
+  padding-bottom: 2%;
+  text-align: center;
 }
