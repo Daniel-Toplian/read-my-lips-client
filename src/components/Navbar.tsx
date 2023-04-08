@@ -1,7 +1,7 @@
 import '../styles/Navbar.css'
 
 function Navbar() {
-  return <section className='nav'></section>
+  return <div className='nav'></div>
 }
 
 export default Navbar

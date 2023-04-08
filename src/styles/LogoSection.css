@@ -1,6 +1,9 @@
 .logoSection {
+  display: flex;
+  flex: 3;
+  align-items: center;
+  justify-content: center;
+
   background-color: rgba(242, 243, 243, 255);
-  padding-top: 5%;
-  padding-bottom: 2%;
-  text-align: center;
+  width: 100%;
 }

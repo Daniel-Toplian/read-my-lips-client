@@ -1,24 +1,29 @@
 import { useState } from 'react'
 import '../styles/UploadVideo.css'
+import ShowVideoPopup from './ShowVideoPopup'
 import UploadPopup from './UploadPopup'
 
 function UploadSection() {
-  const [popupTrigger, setPopupTrigger] = useState<boolean>(false)
+  const [uploadOptionsTrigger, setuploadOptionsTrigger] =
+    useState<boolean>(false)
 
   const handleUploadButtonClick = (): void => {
-    setPopupTrigger(true)
+    setuploadOptionsTrigger(true)
   }
 
   return (
-    <section id='upload-section'>
+    <div id='upload-section'>
       <div id='content-wrapper'>
         <button id='upload-button' onClick={handleUploadButtonClick}>
           Add video
         </button>
         <h4>It doesn't have to contain sound :)</h4>
-        <UploadPopup trigger={popupTrigger} setTrigger={setPopupTrigger} />
+        <UploadPopup
+          trigger={uploadOptionsTrigger}
+          setTrigger={setuploadOptionsTrigger}
+        />
       </div>
-    </section>
+    </div>
   )
 }
 
