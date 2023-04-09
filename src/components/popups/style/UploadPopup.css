@@ -1,0 +1,18 @@
+.options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 6;
+}
+
+.upload-option {
+  background-color: rgba(231, 229, 230, 255);
+  border-radius: 4%;
+  margin: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}

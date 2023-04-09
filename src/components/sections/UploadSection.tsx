@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import '../styles/UploadVideo.css'
-import ShowVideoPopup from './ShowVideoPopup'
-import UploadPopup from './UploadPopup'
+import './style/UploadSection.css'
+import PopupFrame from '../popups/PopupFrame'
 
 function UploadSection() {
   const [uploadOptionsTrigger, setuploadOptionsTrigger] =
@@ -18,7 +17,7 @@ function UploadSection() {
           Add video
         </button>
         <h4>It doesn't have to contain sound :)</h4>
-        <UploadPopup
+        <PopupFrame
           trigger={uploadOptionsTrigger}
           setTrigger={setuploadOptionsTrigger}
         />

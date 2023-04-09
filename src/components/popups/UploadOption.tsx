@@ -1,4 +1,4 @@
-import '../styles/UploadVideo.css'
+import './style/UploadOption.css'
 
 type OptionProp = {
   imagePath: string

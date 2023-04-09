@@ -1,4 +1,4 @@
-import '../styles/FooterSection.css'
+import './style/FooterSection.css'
 
 function FooterSection() {
   return (

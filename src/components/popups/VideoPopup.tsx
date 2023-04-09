@@ -3,8 +3,8 @@ type PopupProp = {
   setTrigger: (value: boolean) => void
 }
 
-function ShowVideoPopup(props: PopupProp) {
+function VideoPopup(props: PopupProp) {
   return props.trigger ? <div></div> : <div></div>
 }
 
-export default ShowVideoPopup
+export default VideoPopup
