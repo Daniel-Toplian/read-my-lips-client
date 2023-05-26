@@ -3,10 +3,15 @@
   height: 100%;
   width: 100%;
   font-size: larger;
-  color: grey;
 }
 
 .option-img {
-  width: 80%;
-  height: auto;
+  width: min-content;
+  height: min-content;
+}
+
+.option-title {
+  font-weight: bold;
+  color: grey;
+  font-size: large;
 }

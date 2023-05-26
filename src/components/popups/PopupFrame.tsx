@@ -10,25 +10,16 @@ let showMe: boolean = true
 
 function PopupFrame(props: PopupProp) {
   return props.trigger ? (
-    showMe ? (
-      <div className='upload-backgournd'>
-        <div className='popup-block'>
-          <button
-            className='exit-button'
-            onClick={() => props.setTrigger(false)}
-          >
-            X
-          </button>
-          <div className='content'>
-            <PopupContent />
-          </div>
-        </div>
+    <div className='upload-backgournd'>
+      <div className='popup-block'>
+        <button className='exit-button' onClick={() => props.setTrigger(false)}>
+          X
+        </button>
+        <PopupContent />
       </div>
-    ) : (
-      <div></div>
-    )
+    </div>
   ) : (
-    <div></div>
+    <></>
   )
 }
 

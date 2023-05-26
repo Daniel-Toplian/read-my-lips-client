@@ -13,15 +13,15 @@
 
 .popup-block {
   position: fixed;
-  width: 50%;
-  height: 40%;
+  width: 60%;
+  height: 70%;
   background-color: white;
   border-radius: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  flex-wrap: wrap;
 }
 
 .exit-button {
@@ -29,16 +29,19 @@
   font-size: xx-large;
   color: grey;
   border-width: 0;
+  border-radius: inherit;
   width: min-content;
   height: min-content;
-
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 15px;
 }
 
-.content {
+/* .content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-}
+  width: 100%;
+  height: 100%;
+  flex: 10;
+} */
