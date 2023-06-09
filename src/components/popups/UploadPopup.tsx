@@ -1,12 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import UploadOption from './UploadOption'
 import './style/UploadPopup.css'
+import VideoPopup from './VideoPopup'
 
 function UploadPopup() {
 
-  const apiPath = 'http://localhost:5000/video-to-text';
-  
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const handleUploadFromComputer = () => {
     if (fileInputRef.current) {
@@ -14,31 +14,9 @@ function UploadPopup() {
     }
   }
 
-  async function handleFileSelected(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
+   const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null
-
-    if (file) {
-      try {
-        const formData = new FormData()
-        formData.append('video', file)
-
-        const response = await fetch(apiPath, {
-          method: 'POST',
-          body: formData,
-        })
-
-        if (response.ok) {
-          const responseData = await response.json();
-          alert('File uploaded successfully:' + responseData['generated_text'])
-        } else {
-          console.error('Error uploading file')
-        }
-      } catch (error) {
-        console.error('Error uploading file', error)
-      }
-    }
+    setSelectedFile(file)
   }
 
   const handleFilmVideo = () => {
@@ -57,30 +35,36 @@ function UploadPopup() {
   }
 
   return (
-    <div className='options-container'>
-      <div className='upload-option'>
-        <UploadOption
-          title='Upload from computer'
-          imagePath={process.env.PUBLIC_URL + 'computerIcon.png'}
-          alt='Upload from computer icon'
-          onClick={handleUploadFromComputer}
-        />
-        <input
-          type='file'
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-          onChange={handleFileSelected}
-        />
-      </div>
-      <div className='upload-option'>
-        <UploadOption
-          title='Film video'
-          imagePath={process.env.PUBLIC_URL + 'camIcon.png'}
-          alt='Film video icon'
-          onClick={handleFilmVideo}
-        />
-      </div>
-    </div>
+    <>
+      {selectedFile ? (
+        <VideoPopup selectedFile={selectedFile}/>
+      ) : (
+        <div className='options-container'>
+          <div className='upload-option'>
+            <UploadOption
+              title='Upload from computer'
+              imagePath={process.env.PUBLIC_URL + 'computerIcon.png'}
+              alt='Upload from computer icon'
+              onClick={handleUploadFromComputer}
+            />
+            <input
+              type='file'
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              onChange={handleFileSelection}
+            />
+          </div>
+          <div className='upload-option'>
+            <UploadOption
+              title='Film video'
+              imagePath={process.env.PUBLIC_URL + 'camIcon.png'}
+              alt='Film video icon'
+              onClick={handleFilmVideo}
+            />
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
