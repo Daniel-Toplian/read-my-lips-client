@@ -1,12 +1,10 @@
-import PopupContent from './PopupContent'
 import './style/PopupFrame.css'
+import UploadPopup from './UploadPopup'
 
 type PopupProp = {
   trigger: boolean
   setTrigger: (value: boolean) => void
 }
-
-let showMe: boolean = true
 
 function PopupFrame(props: PopupProp) {
   return props.trigger ? (
@@ -15,7 +13,7 @@ function PopupFrame(props: PopupProp) {
         <button className='exit-button' onClick={() => props.setTrigger(false)}>
           X
         </button>
-        <PopupContent />
+        <UploadPopup />
       </div>
     </div>
   ) : (

@@ -1,42 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import SubmitVideoButton from './buttons/SubmitVideoButton';
+import './style/VideoPopup.css';
 
 type PopupProp = {
   selectedFile: File
 }
 
 function VideoPopup(props: PopupProp) {
-  const apiPath = 'http://localhost:5000/video-to-text';
   const { selectedFile } = props
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
 
-  async function sendVideo() {
+  useEffect(() => {
     if (selectedFile) {
-      try {
-        const formData = new FormData()
-        formData.append('video', selectedFile)
-
-        const response = await fetch(apiPath, {
-          method: 'POST',
-          body: formData,
-        })
-
-        if (response.ok) {
-          const responseData = await response.json();
-          alert('File uploaded successfully: ' + responseData['generated_text'])
-          // setSelectedFile(file) // Set the selected file in state
-        } else {
-          console.error('Error uploading file')
-        }
-      } catch (error) {
-        console.error('Error uploading file', error)
+      const src = URL.createObjectURL(selectedFile)
+      setVideoSrc(src)
+      return () => {
+        URL.revokeObjectURL(src)
       }
     }
-  }
+  }, [selectedFile])
 
- 
   return (
     <div>
-      <video src={URL.createObjectURL(selectedFile)} controls />
-      <button onClick={sendVideo}>Send</button>
+      {videoSrc ? (
+        <video className="video-screen" src={videoSrc} controls />
+      ) : (
+        <p>Loading video...</p>
+      )}
+      <div className="button-placement">
+        <SubmitVideoButton video={selectedFile}/> 
+      </div>
     </div>
   )
 }
