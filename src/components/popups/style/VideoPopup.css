@@ -1,6 +1,6 @@
 .video-screen {
-  margin-top: 8%;
-  width: clac(100% -30%);
+  margin-top: 6%;
+  width: calc(750px - 5%);
   background-color: black;
   position: relative;
   padding: 2px;

@@ -32,15 +32,14 @@ function VideoPopup(props: PopupProp) {
           <p>Loading video...</p>
         )}
         <div className='component-placement'>
-          {showResultPopup ? (
-            <ResultPopup resultText={resultText} />
-          ) : (
-            <SubmitVideoButton
-              video={selectedFile}
-              setShowResultPopup={setShowResultPopup}
-              setResultText={setResultText}
-            />
-          )}
+          <SubmitVideoButton
+            video={selectedFile}
+            setShowResultPopup={setShowResultPopup}
+            setResultText={setResultText}
+          />
+        </div>
+        <div className='component-placement'>
+          {showResultPopup ? <ResultPopup resultText={resultText} /> : <></>}
         </div>
       </div>
     </>

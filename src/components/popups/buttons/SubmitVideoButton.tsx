@@ -33,6 +33,7 @@ function SubmitVideoButton(props: submitProp) {
 
   async function sendVideo() {
     if (video && !isButtonDisabled) {
+      setLoadingScreen(true)
       try {
         const formData = new FormData()
         formData.append('video', video)
