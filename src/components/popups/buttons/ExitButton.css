@@ -1,0 +1,12 @@
+.exit-button {
+  background-color: white;
+  font-size: xx-large;
+  color: grey;
+  border-width: 0;
+  border-radius: inherit;
+  width: min-content;
+  height: min-content;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}

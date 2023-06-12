@@ -1,4 +1,5 @@
-.button, .tick {
+.button,
+.tick {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,14 +10,14 @@
 .button {
   width: 100px;
   height: 50px;
-  background:  rgb(32, 57, 138);
+  background: rgb(32, 57, 138);
   border-radius: 6px;
-  transition: all .3s cubic-bezier(0.67, 0.17, 0.40, 0.83);
+  transition: all 0.3s cubic-bezier(0.67, 0.17, 0.4, 0.83);
 }
 
 .button svg {
   transform: rotate(180deg);
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .button__circle {
@@ -34,5 +35,5 @@
 .tick {
   color: white;
   font-size: large;
-  transition: all .9s;
+  transition: all 0.9s;
 }

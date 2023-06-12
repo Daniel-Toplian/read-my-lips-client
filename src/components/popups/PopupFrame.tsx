@@ -1,3 +1,4 @@
+import ExitButton from './buttons/ExitButton'
 import './style/PopupFrame.css'
 import UploadPopup from './UploadPopup'
 
@@ -10,9 +11,7 @@ function PopupFrame(props: PopupProp) {
   return props.trigger ? (
     <div className='upload-backgournd'>
       <div className='popup-block'>
-        <button className='exit-button' onClick={() => props.setTrigger(false)}>
-          X
-        </button>
+        <ExitButton onClick={() => props.setTrigger(false)}/>
         <UploadPopup />
       </div>
     </div>
