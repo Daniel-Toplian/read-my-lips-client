@@ -24,7 +24,7 @@ function UploadPopup() {
     setShowCaptureScreen(true)
   }
 
-  const handleStopRecording = (recordedVideo: File) => {
+  const handleSaveRecording = (recordedVideo: File | null) => {
     setSelectedFile(recordedVideo)
     setShowCaptureScreen(false)
   }
@@ -32,7 +32,7 @@ function UploadPopup() {
   return (
     <>
       {showCaptureScreen ? (
-        <CaptureScreen onStopRecording={handleStopRecording} />
+        <CaptureScreen onSaveRecording={handleSaveRecording} />
       ) : (
         <>
           {selectedFile ? (

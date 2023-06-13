@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 type CaptureScreenProps = {
-  onStopRecording: (recordedVideo: File) => void
+  onSaveRecording: (recordedVideo: File | null) => void
 }
 
-function CaptureScreen({ onStopRecording }: CaptureScreenProps) {
+function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null)
   const [isRecording, setIsRecording] = useState(false)
+  const [capturedVideo, setCapturedVideo] = useState<File | null>(null)
 
   const startRecording = async () => {
     try {
@@ -18,6 +19,21 @@ function CaptureScreen({ onStopRecording }: CaptureScreenProps) {
         videoRef.current.play()
       }
       setIsRecording(true)
+
+      const mediaRecorder = new MediaRecorder(stream)
+      const recordedChunks: Blob[] = []
+
+      mediaRecorder.ondataavailable = (event) => {
+        recordedChunks.push(event.data)
+      }
+
+      mediaRecorder.onstop = () => {
+        const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' })
+        const recordedVideo = new File([recordedBlob], 'recorded_video.mp4')
+        setCapturedVideo(recordedVideo)
+      }
+
+      mediaRecorder.start()
     } catch (error) {
       console.error('Video recording error:', error)
     }
@@ -27,6 +43,7 @@ function CaptureScreen({ onStopRecording }: CaptureScreenProps) {
     if (mediaStream && videoRef.current) {
       const tracks = mediaStream.getTracks()
       tracks.forEach((track) => track.stop())
+
       videoRef.current.srcObject = null
       setMediaStream(null)
       setIsRecording(false)
@@ -34,30 +51,7 @@ function CaptureScreen({ onStopRecording }: CaptureScreenProps) {
   }
 
   const handleSaveRecording = () => {
-    if (videoRef.current && videoRef.current.srcObject instanceof MediaStream) {
-      const mediaStream = videoRef.current.srcObject
-      const mediaStreamTracks = mediaStream.getTracks()
-      const mediaRecorder = new MediaRecorder(mediaStream)
-
-      const recordedChunks: Blob[] = []
-
-      mediaRecorder.ondataavailable = (event) => {
-        recordedChunks.push(event.data)
-      }
-
-      mediaRecorder.onstop = () => {
-        const recordedBlob = new Blob(recordedChunks, { type: 'video/webm' })
-        const recordedVideo = new File([recordedBlob], 'recorded_video.webm')
-        onStopRecording(recordedVideo)
-      }
-
-      mediaRecorder.start()
-
-      setTimeout(() => {
-        mediaRecorder.stop()
-        mediaStreamTracks.forEach((track) => track.stop())
-      }, 2000)
-    }
+    onSaveRecording(capturedVideo)
   }
 
   return (
