@@ -13,6 +13,7 @@ function VideoPopup(props: PopupProp) {
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
   const [showResultPopup, setShowResultPopup] = useState(false)
   const [resultText, setResultText] = useState<string>('')
+  const [isCancleHidden, setisCancleHidden] = useState(false)
 
   useEffect(() => {
     if (selectedFile) {
@@ -37,14 +38,15 @@ function VideoPopup(props: PopupProp) {
             video={selectedFile}
             setShowResultPopup={setShowResultPopup}
             setResultText={setResultText}
+            setCancleHidden={() => setisCancleHidden(true)}
           />
-          <button
-            className='cancle-btn'
-            onClick={returnToMenu}
-            hidden={!!selectedFile}
-          >
-            Cancle
-          </button>
+          {isCancleHidden ? (
+            <></>
+          ) : (
+            <button className='cancle-btn' onClick={returnToMenu}>
+              Cancle
+            </button>
+          )}
         </div>
         <div className='component-placement'>
           {showResultPopup ? <ResultPopup resultText={resultText} /> : <></>}

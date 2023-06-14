@@ -6,11 +6,12 @@ type submitProp = {
   video: File
   setShowResultPopup: (isShown: boolean) => void
   setResultText: (text: string) => void
+  setCancleHidden: () => void
 }
 
 function SubmitVideoButton(props: submitProp) {
   const apiPath = 'http://localhost:5000/video-to-text'
-  const { video, setShowResultPopup, setResultText } = props
+  const { video, setShowResultPopup, setResultText, setCancleHidden } = props
   const [buttonText, setButtonText] = useState<React.ReactNode>('Submit')
   const [isButtonCircle, setIsButtonCircle] = useState(false)
   const [isButtonDisabled, setIsButtonDisabled] = useState(false)
@@ -33,6 +34,7 @@ function SubmitVideoButton(props: submitProp) {
 
   async function sendVideo() {
     if (video && !isButtonDisabled) {
+      setCancleHidden()
       setLoadingScreen(true)
       try {
         const formData = new FormData()
