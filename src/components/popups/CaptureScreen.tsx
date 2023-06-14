@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import './style/CaptureScreenProps.css'
+import './style/CaptureScreen.css'
 
 type CaptureScreenProps = {
   onSaveRecording: (recordedVideo: File | null) => void
@@ -34,7 +34,6 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
           type: 'video/mp4',
         })
 
-        console.log(recordedVideo.size, recordedVideo.name, recordedVideo.type)
         setCapturedVideo(recordedVideo)
       }
 
@@ -60,15 +59,35 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
   }
 
   return (
-    <div>
-      {!isRecording && <h2>Recording in progress...</h2>}
-      <video ref={videoRef} autoPlay muted />
-      <div>
+    <div className='body'>
+      <div className='screen-placment'>
         {!isRecording && (
-          <button onClick={startRecording}>Start Recording</button>
+          <h2 className='placeholder'>Recording in progress...</h2>
         )}
-        {isRecording && <button onClick={stopRecording}>Stop Recording</button>}
-        <button onClick={handleSaveRecording} disabled={isRecording}>
+        <video
+          className='screen'
+          ref={videoRef}
+          autoPlay
+          muted
+          hidden={!isRecording}
+        />
+      </div>
+      <div className='buttons'>
+        {!isRecording && (
+          <button className='btn play' onClick={startRecording}>
+            Start Recording
+          </button>
+        )}
+        {isRecording && (
+          <button className='btn stop' onClick={stopRecording}>
+            Stop Recording
+          </button>
+        )}
+        <button
+          className='btn save'
+          onClick={handleSaveRecording}
+          disabled={isRecording}
+        >
           Save Recording
         </button>
       </div>
