@@ -19,6 +19,7 @@
   height: 45px;
   width: 150px;
   border-width: 0;
+  cursor: pointer;
 }
 
 #content-wrapper {

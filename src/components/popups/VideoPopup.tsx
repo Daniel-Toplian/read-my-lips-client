@@ -5,10 +5,11 @@ import './style/VideoPopup.css'
 
 type PopupProp = {
   selectedFile: File
+  returnToMenu: () => void
 }
 
 function VideoPopup(props: PopupProp) {
-  const { selectedFile } = props
+  const { selectedFile, returnToMenu } = props
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
   const [showResultPopup, setShowResultPopup] = useState(false)
   const [resultText, setResultText] = useState<string>('')
@@ -37,6 +38,9 @@ function VideoPopup(props: PopupProp) {
             setShowResultPopup={setShowResultPopup}
             setResultText={setResultText}
           />
+          <button className='cancle-btn' onClick={returnToMenu}>
+            Cancle
+          </button>
         </div>
         <div className='component-placement'>
           {showResultPopup ? <ResultPopup resultText={resultText} /> : <></>}

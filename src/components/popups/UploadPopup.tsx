@@ -36,7 +36,10 @@ function UploadPopup() {
       ) : (
         <>
           {selectedFile ? (
-            <VideoPopup selectedFile={selectedFile} />
+            <VideoPopup
+              selectedFile={selectedFile}
+              returnToMenu={() => setSelectedFile(null)}
+            />
           ) : (
             <div className='options-container'>
               <div className='upload-option'>
