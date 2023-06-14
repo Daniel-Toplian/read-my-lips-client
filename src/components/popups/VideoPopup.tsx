@@ -38,7 +38,11 @@ function VideoPopup(props: PopupProp) {
             setShowResultPopup={setShowResultPopup}
             setResultText={setResultText}
           />
-          <button className='cancle-btn' onClick={returnToMenu}>
+          <button
+            className='cancle-btn'
+            onClick={returnToMenu}
+            hidden={!!selectedFile}
+          >
             Cancle
           </button>
         </div>
