@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import './style/CaptureScreenProps.css'
 
 type CaptureScreenProps = {
   onSaveRecording: (recordedVideo: File | null) => void
@@ -29,7 +30,11 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
 
       mediaRecorder.onstop = () => {
         const recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' })
-        const recordedVideo = new File([recordedBlob], 'recorded_video.mp4')
+        const recordedVideo = new File([recordedBlob], 'recorded_video.mp4', {
+          type: 'video/mp4',
+        })
+
+        console.log(recordedVideo.size, recordedVideo.name, recordedVideo.type)
         setCapturedVideo(recordedVideo)
       }
 
@@ -56,7 +61,7 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
 
   return (
     <div>
-      <h2>Recording in progress...</h2>
+      {!isRecording && <h2>Recording in progress...</h2>}
       <video ref={videoRef} autoPlay muted />
       <div>
         {!isRecording && (
