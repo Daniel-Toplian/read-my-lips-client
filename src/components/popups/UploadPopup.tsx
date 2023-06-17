@@ -3,11 +3,14 @@ import UploadOption from './UploadOption'
 import './style/UploadPopup.css'
 import VideoPopup from './VideoPopup'
 import CaptureScreen from './CaptureScreen'
+import { useMediaQuery } from 'react-responsive';
 
 function UploadPopup() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [showCaptureScreen, setShowCaptureScreen] = useState<boolean>(false)
+
+  const isMobile = useMediaQuery({ maxWidth: 650 })
 
   const handleUploadFromComputer = () => {
     if (fileInputRef.current) {
@@ -29,6 +32,13 @@ function UploadPopup() {
     setShowCaptureScreen(false)
   }
 
+  const handleReturnToMenu = () => {
+    setSelectedFile(null)
+    if(!isMobile) {
+      setShowCaptureScreen(true)
+    }
+  }
+
   return (
     <>
       {showCaptureScreen ? (
@@ -38,32 +48,34 @@ function UploadPopup() {
           {selectedFile ? (
             <VideoPopup
               selectedFile={selectedFile}
-              returnToMenu={() => setSelectedFile(null)}
+              returnToMenu={handleReturnToMenu}
             />
           ) : (
             <div className='options-container'>
-              <div className='upload-option'>
+              <div className='upload-option' onClick={handleUploadFromComputer}>
                 <UploadOption
-                  title='Upload from computer'
+                  title='Upload video'
                   imagePath={process.env.PUBLIC_URL + 'computerIcon.png'}
-                  alt='Upload from computer icon'
-                  onClick={handleUploadFromComputer}
+                  alt='Upload video icon'
                 />
                 <input
                   type='file'
+                  accept='video/*'
                   ref={fileInputRef}
                   style={{ display: 'none' }}
                   onChange={handleFileSelection}
                 />
               </div>
-              <div className='upload-option'>
-                <UploadOption
-                  title='Film video'
-                  imagePath={process.env.PUBLIC_URL + 'camIcon.png'}
-                  alt='Film video icon'
-                  onClick={handleFilmVideo}
-                />
-              </div>
+              {
+                !isMobile &&
+                <div className='upload-option' onClick={handleFilmVideo}>
+                  <UploadOption
+                    title='Film video'
+                    imagePath={process.env.PUBLIC_URL + 'camIcon.png'}
+                    alt='Film video icon'
+                  />
+                </div>
+              }
             </div>
           )}
         </>

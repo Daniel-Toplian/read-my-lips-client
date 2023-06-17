@@ -37,3 +37,9 @@
   font-size: large;
   transition: all 0.9s;
 }
+@media screen and (max-width: 650px) {
+  .button__circle {
+    width: 70px;
+    height: 70px;
+  }
+}

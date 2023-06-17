@@ -7,11 +7,16 @@ type PopupProp = {
   setTrigger: (value: boolean) => void
 }
 
-function PopupFrame(props: PopupProp) {
-  return props.trigger ? (
+function PopupFrame({ setTrigger, trigger }: PopupProp) {
+
+  const handleExit = () => {
+    setTrigger(false)
+  }
+
+  return trigger ? (
     <div className='upload-backgournd'>
       <div className='popup-block'>
-        <ExitButton onClick={() => props.setTrigger(false)}/>
+        <ExitButton onClick={handleExit}/>
         <UploadPopup />
       </div>
     </div>

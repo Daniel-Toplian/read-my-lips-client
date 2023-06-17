@@ -4,19 +4,17 @@ type OptionProp = {
   imagePath: string
   title: string
   alt: string
-  onClick: Function
 }
 
-function UploadOption(props: OptionProp) {
+function UploadOption({ imagePath, alt, title }: OptionProp) {
   return (
     <>
       <img
-        src={props.imagePath}
-        alt={props.alt}
+        src={imagePath}
+        alt={alt}
         className='option-img'
-        onClick={() => props.onClick()}
       />
-      <div className='option-title'>{props.title}</div>
+      <div className='option-title'>{title}</div>
     </>
   )
 }

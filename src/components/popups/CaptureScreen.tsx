@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './style/CaptureScreen.css'
 
 type CaptureScreenProps = {
@@ -35,6 +35,7 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
         })
 
         setCapturedVideo(recordedVideo)
+        setIsRecording(false)
       }
 
       mediaRecorder.start()
@@ -54,15 +55,17 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
     }
   }
 
-  const handleSaveRecording = () => {
-    onSaveRecording(capturedVideo)
-  }
+  useEffect(() => {
+    if(capturedVideo) {
+      onSaveRecording(capturedVideo)
+    }
+  }, [capturedVideo])
 
   return (
     <div className='body'>
       <div className='screen-placment'>
         {!isRecording && (
-          <h2 className='placeholder'>Recording in progress...</h2>
+          <h2 className='placeholder'>Ready</h2>
         )}
         <video
           className='screen'
@@ -83,13 +86,6 @@ function CaptureScreen({ onSaveRecording }: CaptureScreenProps) {
             Stop Recording
           </button>
         )}
-        <button
-          className='btn save'
-          onClick={handleSaveRecording}
-          disabled={isRecording}
-        >
-          Save Recording
-        </button>
       </div>
     </div>
   )
