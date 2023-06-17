@@ -9,6 +9,12 @@
   width: min-content;
   height: min-content;
 }
+@media screen and (max-width: 650px) {
+  .option-img {
+    width: 40%;
+    height: 40%;
+  }
+}
 
 .option-title {
   font-weight: bold;

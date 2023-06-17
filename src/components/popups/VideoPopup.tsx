@@ -8,12 +8,15 @@ type PopupProp = {
   returnToMenu: () => void
 }
 
-function VideoPopup(props: PopupProp) {
-  const { selectedFile, returnToMenu } = props
+function VideoPopup({ selectedFile, returnToMenu }: PopupProp) {
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
   const [showResultPopup, setShowResultPopup] = useState(false)
   const [resultText, setResultText] = useState<string>('')
   const [isCancleHidden, setisCancleHidden] = useState(false)
+
+  const handleCancleHidden = () => {
+    setisCancleHidden(true)
+  }
 
   useEffect(() => {
     if (selectedFile) {
@@ -38,7 +41,7 @@ function VideoPopup(props: PopupProp) {
             video={selectedFile}
             setShowResultPopup={setShowResultPopup}
             setResultText={setResultText}
-            setCancleHidden={() => setisCancleHidden(true)}
+            setCancleHidden={handleCancleHidden}
           />
           {isCancleHidden ? (
             <></>

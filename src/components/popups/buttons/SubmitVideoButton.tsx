@@ -11,13 +11,13 @@ type submitProp = {
   setCancleHidden: () => void
 }
 
-function SubmitVideoButton(props: submitProp) {
-  const apiPath = 'http://localhost:5000/video-to-text'
-  const { video, setShowResultPopup, setResultText, setCancleHidden } = props
+function SubmitVideoButton({ video, setShowResultPopup, setResultText, setCancleHidden }: submitProp) {
   const [buttonText, setButtonText] = useState<React.ReactNode>('Submit')
   const [isButtonCircle, setIsButtonCircle] = useState(false)
   const [isButtonDisabled, setIsButtonDisabled] = useState(false)
   const [showLoadingScreen, setLoadingScreen] = useState(false)
+
+  const apiPath = 'http://localhost:5000/video-to-text'
 
   const tickMark = (
     <svg
@@ -46,7 +46,7 @@ function SubmitVideoButton(props: submitProp) {
 
         setIsButtonDisabled(true)
         changeButton()
-
+        
         const response = await fetch(apiPath, {
           method: 'POST',
           body: formData,

@@ -5,9 +5,9 @@ type buttonProp = {
 }
 
 
-function ExitButton(props: buttonProp) {
+function ExitButton({ onClick }: buttonProp) {
   return (<>
-   <button className='exit-button' onClick={props.onClick}>
+   <button className='exit-button' onClick={onClick}>
           X
     </button>  
   </>);

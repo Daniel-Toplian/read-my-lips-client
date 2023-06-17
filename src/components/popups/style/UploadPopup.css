@@ -17,9 +17,21 @@
   width: 50%;
   height: 70%;
   flex: 3;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+}
+@media screen and (max-width: 650px) {
+  .upload-option {
+    width: 20%;
+    height: 30%;
+  }
+}
+
+.upload-option:hover {
+  opacity: 0.85;
 }
