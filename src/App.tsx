@@ -2,6 +2,9 @@ import Navbar from './components/sections/Navbar'
 import LogoSection from './components/sections/LogoSection'
 import UploadSection from './components/sections/UploadSection'
 import FooterSection from './components/sections/FooterSection'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import './App.css'
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
         <UploadSection />
         <FooterSection />
       </div>
+      <>
+        <ToastContainer />
+      </>
     </div>
   )
 }

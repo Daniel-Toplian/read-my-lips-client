@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import LoadingScreen from '../../utils/LoadingScreen'
 import './SubmitVideoButton.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 type submitProp = {
   video: File
@@ -33,6 +35,8 @@ function SubmitVideoButton(props: submitProp) {
   )
 
   async function sendVideo() {
+    const NOT_ACCEPTABLE = 406
+
     if (video && !isButtonDisabled) {
       setCancleHidden()
       setLoadingScreen(true)
@@ -54,7 +58,9 @@ function SubmitVideoButton(props: submitProp) {
           setShowResultPopup(true)
           setLoadingScreen(false)
         } else {
-          console.error('Error uploading file')
+          const responseData = await response.json()
+          console.error('Error uploading file: ' + responseData['message'])
+          toast.error(responseData['message'])
           setLoadingScreen(false)
         }
       } catch (error) {
