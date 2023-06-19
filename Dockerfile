@@ -7,7 +7,7 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:1.19
+FROM nginx:1.19-alpine
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
