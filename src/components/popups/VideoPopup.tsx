@@ -32,7 +32,7 @@ function VideoPopup({ selectedFile, returnToMenu }: PopupProp) {
     <>
       <div className='video-container'>
         {videoSrc ? (
-          <video className='video-screen' src={videoSrc} controls />
+          <video className='video-screen' src={videoSrc} controls muted />
         ) : (
           <p>Loading video...</p>
         )}

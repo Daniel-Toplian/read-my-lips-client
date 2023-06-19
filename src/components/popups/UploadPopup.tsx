@@ -34,9 +34,6 @@ function UploadPopup() {
 
   const handleReturnToMenu = () => {
     setSelectedFile(null)
-    if(!isMobile) {
-      setShowCaptureScreen(true)
-    }
   }
 
   return (

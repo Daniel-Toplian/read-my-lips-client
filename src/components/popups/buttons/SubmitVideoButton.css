@@ -31,6 +31,9 @@
 .button:hover {
   cursor: pointer;
 }
+.button__circle:hover {
+  cursor: initial;
+}
 
 .tick {
   color: white;
